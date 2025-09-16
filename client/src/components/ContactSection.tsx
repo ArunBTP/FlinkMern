@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,12 +12,15 @@ import {
   SelectTrigger, 
   SelectValue 
 } from "@/components/ui/select";
+import { useToast } from "@/hooks/use-toast";
+import { apiRequest } from "@/lib/queryClient";
 import { 
   Mail, 
   Phone, 
   MapPin, 
   Send,
-  CheckCircle
+  CheckCircle,
+  Loader2
 } from "lucide-react";
 
 export default function ContactSection() {
@@ -34,21 +38,70 @@ export default function ContactSection() {
     console.log(`Field ${field} updated:`, value);
   };
 
+  const { toast } = useToast();
+
+  const submitContactForm = useMutation({
+    mutationFn: async (data: typeof formData) => {
+      return await apiRequest("/api/contact", {
+        method: "POST",
+        body: data
+      });
+    },
+    onSuccess: (response) => {
+      console.log("Contact form submitted successfully:", response);
+      setIsSubmitted(true);
+      toast({
+        title: "Message Sent!",
+        description: "Thank you for your message. We'll get back to you soon.",
+      });
+      
+      // Reset form after showing success
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setFormData({
+          name: "",
+          email: "",
+          company: "",
+          service: "",
+          message: ""
+        });
+      }, 3000);
+    },
+    onError: (error: any) => {
+      console.error("Contact form submission error:", error);
+      toast({
+        title: "Error",
+        description: error.response?.data?.error || "Failed to send message. Please try again.",
+        variant: "destructive"
+      });
+    }
+  });
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    setIsSubmitted(true);
-    // Reset form after 3 seconds for demo
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({
-        name: "",
-        email: "",
-        company: "",
-        service: "",
-        message: ""
+    
+    // Basic validation
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      toast({
+        title: "Validation Error",
+        description: "Please fill in all required fields.",
+        variant: "destructive"
       });
-    }, 3000);
+      return;
+    }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      toast({
+        title: "Invalid Email",
+        description: "Please enter a valid email address.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    submitContactForm.mutate(formData);
   };
 
   const contactInfo = [
@@ -223,10 +276,20 @@ export default function ContactSection() {
                     type="submit" 
                     size="lg" 
                     className="w-full text-lg"
+                    disabled={submitContactForm.isPending}
                     data-testid="button-send-message"
                   >
-                    Send Message
-                    <Send className="ml-2 h-5 w-5" />
+                    {submitContactForm.isPending ? (
+                      <>
+                        <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        Send Message
+                        <Send className="ml-2 h-5 w-5" />
+                      </>
+                    )}
                   </Button>
                 </form>
               </CardContent>
