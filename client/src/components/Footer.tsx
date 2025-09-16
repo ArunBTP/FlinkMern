@@ -22,7 +22,7 @@ export default function Footer({ onScrollToTop }: FooterProps) {
   const services = [
     "Web Development",
     "Online Forms", 
-    "MERN Development",
+    "Full-Stack Development",
     "SAP BTP Cloud Solutions",
     "AI Utilization"
   ];
@@ -36,7 +36,7 @@ export default function Footer({ onScrollToTop }: FooterProps) {
           <div className="lg:col-span-2">
             <h3 className="text-2xl font-bold text-primary mb-4">Flink</h3>
             <p className="text-muted-foreground mb-6 max-w-md">
-              Transforming businesses with cutting-edge web development, MERN stack solutions, 
+              Transforming businesses with cutting-edge web development, full-stack solutions, 
               SAP BTP cloud services, and AI-powered development tools.
             </p>
             <div className="space-y-3">

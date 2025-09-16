@@ -46,7 +46,7 @@ export default function AboutSection({ onContactUs }: AboutSectionProps) {
               innovation and accelerate growth.
             </p>
             <p className="text-muted-foreground mb-6 leading-relaxed">
-              From web development and MERN stack applications to SAP BTP cloud solutions and AI integration, 
+              From web development and full-stack applications to SAP BTP cloud solutions and AI integration, 
               we deliver comprehensive technology services that help our clients stay ahead in today's competitive landscape.
             </p>
             

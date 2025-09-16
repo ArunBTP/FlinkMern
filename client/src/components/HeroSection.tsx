@@ -34,7 +34,7 @@ export default function HeroSection({ onGetStarted }: HeroSectionProps) {
 
           {/* Subheading */}
           <p className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-            Flink delivers cutting-edge web development, MERN stack solutions, SAP BTP cloud services, 
+            Flink delivers cutting-edge web development, modern web solutions, SAP BTP cloud services, 
             and AI-powered tools to help your business innovate faster and scale smarter.
           </p>
 
@@ -64,7 +64,7 @@ export default function HeroSection({ onGetStarted }: HeroSectionProps) {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl mx-auto">
             <div className="flex items-center justify-center gap-3 bg-card/80 backdrop-blur-sm p-4 rounded-lg border border-card-border">
               <Code className="w-6 h-6 text-primary" />
-              <span className="font-medium text-card-foreground">MERN Stack</span>
+              <span className="font-medium text-card-foreground">Web Development</span>
             </div>
             <div className="flex items-center justify-center gap-3 bg-card/80 backdrop-blur-sm p-4 rounded-lg border border-card-border">
               <Cloud className="w-6 h-6 text-primary" />

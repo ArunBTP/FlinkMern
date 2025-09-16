@@ -32,8 +32,8 @@ export default function ServicesSection({ onContactUs }: ServicesSectionProps) {
     },
     {
       icon: Database,
-      title: "MERN Development",
-      description: "Full-stack applications using MongoDB, Express, React, and Node.js.",
+      title: "Full-Stack Development",
+      description: "Complete web applications with modern frameworks and databases.",
       features: ["Scalable Architecture", "Real-time Features", "API Development"],
       color: "text-purple-500"
     },

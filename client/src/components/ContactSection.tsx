@@ -250,7 +250,7 @@ export default function ContactSection() {
                         <SelectContent>
                           <SelectItem value="web-development">Web Development</SelectItem>
                           <SelectItem value="online-forms">Online Forms</SelectItem>
-                          <SelectItem value="mern-development">MERN Development</SelectItem>
+                          <SelectItem value="fullstack-development">Full-Stack Development</SelectItem>
                           <SelectItem value="sap-btp">SAP BTP Cloud Solutions</SelectItem>
                           <SelectItem value="ai-utilization">AI Utilization</SelectItem>
                           <SelectItem value="consultation">General Consultation</SelectItem>
