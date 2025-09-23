@@ -54,7 +54,7 @@ export default function HeroSection({ onGetStarted }: HeroSectionProps) {
             </Button>
       <div className="flex items-center justify-center gap-3 bg-card/80 backdrop-blur-sm p-4 rounded-lg border border-card-border">
               <Image className="w-6 h-6 text-primary" />
-              <span className="font-medium text-card-foreground">Image/ Video Editing using AI</span>
+              <span className="font-medium text-card-foreground">AI Image / Video Editing</span>
             </div>            
             {/* <Button 
               variant="outline" 

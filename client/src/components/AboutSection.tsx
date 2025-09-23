@@ -99,7 +99,7 @@ export default function AboutSection({ onContactUs }: AboutSectionProps) {
                       Hema Varshini
                     </div>
                     <div className="text-primary font-medium">
-                      CEO & Founder
+                      Managing Director
                     </div>
                     <div className="text-sm text-muted-foreground">
                       Leading Flink's vision and innovation
