@@ -41,41 +41,89 @@ export default function ContactSection() {
   const { toast } = useToast();
 
   const submitContactForm = useMutation({
-    mutationFn: async (data: typeof formData) => {
-      return await apiRequest("/api/contact", {
-        method: "POST",
-        body: data
-      });
-    },
-    onSuccess: (response) => {
-      console.log("Contact form submitted successfully:", response);
-      setIsSubmitted(true);
-      toast({
-        title: "Message Sent!",
-        description: "Thank you for your message. We'll get back to you soon.",
-      });
-      
-      // Reset form after showing success
-      setTimeout(() => {
-        setIsSubmitted(false);
-        setFormData({
-          name: "",
-          email: "",
-          company: "",
-          service: "",
-          message: ""
-        });
-      }, 3000);
-    },
-    onError: (error: any) => {
-      console.error("Contact form submission error:", error);
-      toast({
-        title: "Error",
-        description: error.response?.data?.error || "Failed to send message. Please try again.",
-        variant: "destructive"
-      });
+  mutationFn: async (data: typeof formData) => {
+    const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/contacts`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error || "Submission failed");
     }
-  });
+
+    return await response.json();
+  },
+
+  onSuccess: (response) => {
+    console.log("Contact form submitted successfully:", response);
+    setIsSubmitted(true);
+    toast({
+      title: "Message Sent!",
+      description: "Thank you for your message. We'll get back to you soon.",
+    });
+
+    setTimeout(() => {
+      setIsSubmitted(false);
+      setFormData({
+        name: "",
+        email: "",
+        company: "",
+        service: "",
+        message: ""
+      });
+    }, 3000);
+  },
+
+  onError: (error: any) => {
+    console.error("Contact form submission error:", error);
+    toast({
+      title: "Error",
+      description: error.message || "Failed to send message. Please try again.",
+      variant: "destructive"
+    });
+  }
+});
+
+  // const submitContactForm = useMutation({
+  //   mutationFn: async (data: typeof formData) => {
+  //     return await apiRequest("/api/contact", {
+  //       method: "POST",
+  //       body: data
+  //     });
+  //   },
+  //   onSuccess: (response) => {
+  //     console.log("Contact form submitted successfully:", response);
+  //     setIsSubmitted(true);
+  //     toast({
+  //       title: "Message Sent!",
+  //       description: "Thank you for your message. We'll get back to you soon.",
+  //     });
+      
+  //     // Reset form after showing success
+  //     setTimeout(() => {
+  //       setIsSubmitted(false);
+  //       setFormData({
+  //         name: "",
+  //         email: "",
+  //         company: "",
+  //         service: "",
+  //         message: ""
+  //       });
+  //     }, 3000);
+  //   },
+  //   onError: (error: any) => {
+  //     console.error("Contact form submission error:", error);
+  //     toast({
+  //       title: "Error",
+  //       description: error.response?.data?.error || "Failed to send message. Please try again.",
+  //       variant: "destructive"
+  //     });
+  //   }
+  // });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -108,19 +156,19 @@ export default function ContactSection() {
     {
       icon: Mail,
       title: "Email Us",
-      content: "hello@flink.dev",
-      action: "mailto:hello@flink.dev"
+      content: "flinkconnect@gmail.com",
+      action: "mailto:flinkconnect@gmail.com"
     },
     {
       icon: Phone,
       title: "Call Us",
-      content: "+1 (555) 123-4567",
-      action: "tel:+15551234567"
+      content: "+91 9629324226",
+      action: "tel:+91 9629324226"
     },
     {
       icon: MapPin,
       title: "Visit Us",
-      content: "123 Tech Street, Innovation City, TC 12345",
+      content: "Kovilvazhi, Tiruppur, 641605",
       action: "#"
     }
   ];

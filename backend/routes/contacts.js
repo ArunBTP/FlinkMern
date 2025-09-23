@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const Contact = require('../models/Contact');
 
+const { sendEmail, createContactNotificationEmail, createAutoReplyEmail } = require('../server/email');
+
 // Create new contact submission
 router.post('/', async (req, res) => {
   try {
@@ -35,6 +37,16 @@ router.post('/', async (req, res) => {
     });
 
     await contact.save();
+
+    // --- NEW EMAIL LOGIC ---
+    // 1. Send the notification email to your company
+    const companyEmailParams = createContactNotificationEmail(contact);
+    sendEmail(companyEmailParams); // Use await if you want to wait for it, but not required here
+
+    // 2. Send the auto-reply email to the user
+    const autoReplyEmailParams = createAutoReplyEmail(contact);
+    sendEmail(autoReplyEmailParams); // Use await if you want to wait for it, but not required here
+    // --- END NEW EMAIL LOGIC ---
 
     res.status(201).json({
       success: true,

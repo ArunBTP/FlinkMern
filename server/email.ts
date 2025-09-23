@@ -1,5 +1,6 @@
 // Using SendGrid integration for email functionality
 import { MailService } from '@sendgrid/mail';
+import 'dotenv/config';
 
 if (!process.env.SENDGRID_API_KEY) {
   console.warn("SENDGRID_API_KEY environment variable not set - email functionality will be disabled");
@@ -43,8 +44,8 @@ export function createContactNotificationEmail(submission: any): EmailParams {
   const { name, email, company, service, message } = submission;
   
   return {
-    to: "hello@flink.dev", // Company email
-    from: "noreply@flink.dev", // Verified sender
+    to: "flinkconnect@gmail.com", // Company email
+    from: "flinkconnect@gmail.com", // Verified sender
     subject: `New Contact Form Submission from ${name}`,
     text: `
 New contact form submission received:
@@ -86,7 +87,7 @@ export function createAutoReplyEmail(submission: any): EmailParams {
   
   return {
     to: email,
-    from: "hello@flink.dev",
+    from: "flinkconnect@gmail.com",
     subject: "Thank you for contacting Flink!",
     text: `
 Hi ${name},

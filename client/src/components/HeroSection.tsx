@@ -1,7 +1,10 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Code, Zap, Cloud } from "lucide-react";
-import heroImage from "@assets/generated_images/Tech_hero_background_image_4a37326c.png";
-
+import { ArrowRight, Code, Zap, Cloud,Image  } from "lucide-react";
+// import heroImage from "@assets/generated_images/Tech_hero_background_image_4a37326c.png";
+import heroImage from "@assets/generated_images/5072616.jpg";
+// attached_assets\generated_images\5072616.jpg
+// import heroImage from "@assets/generated_images/professional-programmer-working-late-dark-office.jpg";
+// C:\Users\Arun kumar\Downloads\FlinkMERN\attached_assets\generated_images\professional-programmer-working-late-dark-office.jpg
 interface HeroSectionProps {
   onGetStarted: () => void;
 }
@@ -33,10 +36,10 @@ export default function HeroSection({ onGetStarted }: HeroSectionProps) {
           </h1>
 
           {/* Subheading */}
-          <p className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-            Flink delivers cutting-edge web development, modern web solutions, SAP BTP cloud services, 
-            and AI-powered tools to help your business innovate faster and scale smarter.
-          </p>
+          <p className="text-lg sm:text-xl font-bold mb-8 max-w-3xl mx-auto leading-relaxed">
+  Flink delivers cutting-edge web development, modern web solutions, SAP BTP cloud services, 
+  and AI-powered tools to help your business innovate faster and scale smarter.
+</p>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
@@ -49,19 +52,23 @@ export default function HeroSection({ onGetStarted }: HeroSectionProps) {
               Start Your Project
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
-            <Button 
+      <div className="flex items-center justify-center gap-3 bg-card/80 backdrop-blur-sm p-4 rounded-lg border border-card-border">
+              <Image className="w-6 h-6 text-primary" />
+              <span className="font-medium text-card-foreground">Image/ Video Editing using AI</span>
+            </div>            
+            {/* <Button 
               variant="outline" 
               size="lg"
               className="text-lg px-8 py-6 bg-background/80 backdrop-blur-sm"
-              onClick={() => console.log("Learn more clicked")}
+              disabled
               data-testid="button-learn-more"
             >
-              Learn More
-            </Button>
+              Image/ Video Editing using AI
+            </Button> */}
           </div>
 
           {/* Feature Highlights */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl mx-auto">            
             <div className="flex items-center justify-center gap-3 bg-card/80 backdrop-blur-sm p-4 rounded-lg border border-card-border">
               <Code className="w-6 h-6 text-primary" />
               <span className="font-medium text-card-foreground">Web Development</span>

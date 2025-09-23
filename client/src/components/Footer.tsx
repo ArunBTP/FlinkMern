@@ -14,13 +14,14 @@ export default function Footer({ onScrollToTop }: FooterProps) {
   const currentYear = new Date().getFullYear();
 
   const contactInfo = [
-    { icon: Mail, text: "hello@flink.dev" },
-    { icon: Phone, text: "+1 (555) 123-4567" },
-    { icon: MapPin, text: "123 Tech Street, Innovation City" }
+    { icon: Mail, text: "flinkconnect@gmail.comm" },
+    { icon: Phone, text: "+91 9095454869" },
+    { icon: MapPin, text: "Kovil vazhi, Tiruppur, 641605" }
   ];
 
   const services = [
     "Web Development",
+    "Image/ Video Editing",
     "Online Forms", 
     "Full-Stack Development",
     "SAP BTP Cloud Solutions",
