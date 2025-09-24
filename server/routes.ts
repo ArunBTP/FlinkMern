@@ -27,7 +27,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const notificationEmail = createContactNotificationEmail(submission);
       const notificationSent = await sendEmail(notificationEmail);
 
-      // Send auto-reply email to user
+      // // Send auto-reply email to user
       const autoReplyEmail = createAutoReplyEmail(submission);
       const autoReplySent = await sendEmail(autoReplyEmail);
 

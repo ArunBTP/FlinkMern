@@ -2,9 +2,11 @@ import {
   type User, 
   type InsertUser, 
   type ContactSubmission, 
-  type InsertContactSubmission 
+  type InsertContactSubmission
 } from "@shared/schema";
+import { db } from "./db"; 
 import { randomUUID } from "crypto";
+import { contactSubmissions } from "@shared/schema"; // or correct relative path
 
 // modify the interface with any CRUD methods
 // you might need
@@ -54,7 +56,8 @@ export class MemStorage implements IStorage {
       message: submission.message,
       submittedAt: new Date(),
     };
-    this.contactSubmissions.set(id, contactSubmission);
+    await db.insert(contactSubmissions).values(contactSubmission);
+    // this.contactSubmissions.set(id, contactSubmission);
     return contactSubmission;
   }
 
