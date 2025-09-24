@@ -20,6 +20,8 @@ interface EmailParams {
 }
 
 export async function sendEmail(params: EmailParams): Promise<boolean> {
+  console.log("📧 Sending email:", params);
+
   if (!process.env.SENDGRID_API_KEY) {
     console.log('Email would be sent:', params);
     return true; // Return true in dev mode for testing

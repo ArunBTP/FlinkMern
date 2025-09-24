@@ -9,6 +9,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/contact", async (req, res) => {
     try {
       // Validate request body
+
+      console.log("✅ Received POST /api/contact:", req.body);
+
       const validationResult = insertContactSubmissionSchema.safeParse(req.body);
       
       if (!validationResult.success) {

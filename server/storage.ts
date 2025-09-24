@@ -47,6 +47,7 @@ export class MemStorage implements IStorage {
 
   async createContactSubmission(submission: InsertContactSubmission): Promise<ContactSubmission> {
     const id = randomUUID();
+    
     const contactSubmission: ContactSubmission = {
       id,
       name: submission.name,
@@ -56,7 +57,13 @@ export class MemStorage implements IStorage {
       message: submission.message,
       submittedAt: new Date(),
     };
-    await db.insert(contactSubmissions).values(contactSubmission);
+    console.log("📦 Inserting into DB:", contactSubmission);
+
+try {
+  await db.insert(contactSubmissions).values(contactSubmission);
+} catch (err) {
+  console.error("❌ DB insert failed:", err);
+}
     // this.contactSubmissions.set(id, contactSubmission);
     return contactSubmission;
   }
